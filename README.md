@@ -2,9 +2,8 @@
 
 ## Configuration
 
-- connection_timeout
-  Set connection timeout
-
-- ezyapi_server
-
-- ezycli_server
+| key                | description            |
+| ------------------ | ---------------------- |
+| connection_timeout | set connection timeout |
+| ezyapi_server      |                        |
+| ezycli_server      |                        |
