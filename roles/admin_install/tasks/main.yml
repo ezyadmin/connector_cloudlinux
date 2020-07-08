@@ -98,6 +98,8 @@
   register: cpanel_file
   when: cpanel_bin.stat.exists is defined and cpanel_bin.stat.exists
 
+
+
 # 11. configure logrotate
 # 12. configure garbage , tmpwatch
 # 13. configure cron
@@ -106,9 +108,17 @@
 #    name: "EzyAdmin cron daily"
 #   special_time: daily
 #    job: "/usr/local/ezyadmin/agent/ezyadmin_patchmgr_update.sh"
+
 - cron:
     name: "EzyAdmin Cron"
     minute: "0"
     hour: "1"
     job: "perl -le 'sleep rand 9000' && /usr/local/ezyadmin/agent/ezyadmin_patchmgr_update.sh"
+
+- name: Register EzyAdmin Connector
+  include: 99_register_ezyadmin_connector.yaml
+  when:
+    - register_ezyadmin_connector
+    - ezyadmin.api_url is defined
+    - ezyadmin.connector_id is defined
 # ============= Default Task ===============
